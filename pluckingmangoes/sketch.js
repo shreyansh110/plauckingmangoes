@@ -2,12 +2,9 @@ const Engine=Matter.Engine
 const World=Matter.World
 const Bodies=Matter.Bodies
 const Body=Matter.Body
-// const Constraint=Matter.Constraint
+const Constraint=Matter.Constraint
 
 function preload(){
-
-
-
 
 }
 
@@ -16,7 +13,7 @@ var canvas= createCanvas(1200,580)
 
 engine=Engine.create();
 world=engine.world;
-
+keyPressed();
 tree1=new Tree(920,310,550,550);
 human=new Boy(230,470,200,400);
 support=new Ground(600,570,1300,30);
@@ -30,6 +27,8 @@ mango7=new Mango(800,290,80,80);
 mango8=new Mango(980,100,70,70);
 mango9=new Mango(1130,230,70,70);
 mango10=new Mango(750,230,70,70);
+stone1=new Stone(120,420,100,100);
+slingShot=new Catapult(stone1.body,{x:200,y:100});
 }
 
 
@@ -53,4 +52,24 @@ mango7.display();
 mango8.display();
 mango9.display();
 mango10.display();
+stone1.display();
+slingShot.display();
+}
+
+function mouseDragged(){
+Matter.Body.setPosition(stone1.body,{x:mouseX,y:mouseY});
+
+}
+
+function mouseReleased(){
+slingShot.fly();
+}
+
+
+function keyPressed(){
+if(keyCode===32){
+Matter.Body.setPosition(stoneObj.body,{x:235,y:420})
+launcherObject.attach(stoneObj.body);
+}
+
 }
